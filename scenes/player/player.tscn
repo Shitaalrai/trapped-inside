@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bq8sqr4xsvr2l"]
 
 [ext_resource type="Texture2D" uid="uid://dd14yvscw8gcd" path="res://assets/sprites/player/Warrior_Blue.png" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://dnw1su0f4ypon" path="res://assets/sprites/player/player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://dnw1su0f4ypon" path="res://scripts/player/player.gd" id="1_onrkg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 29.017237
