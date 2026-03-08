@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://co5d4a7cccfo2"]
+[gd_scene format=3 uid="uid://b1t3n2a83nss6"]
 
-[ext_resource type="Script" uid="uid://v235wigc1dio" path="res://assets/effects/death.gd" id="1_4lrdr"]
-[ext_resource type="Texture2D" uid="uid://75hdasi3owsr" path="res://assets/effects/Dead.png" id="2_l1bdu"]
+[ext_resource type="Script" uid="uid://v235wigc1dio" path="res://effects/death.gd" id="1_4lrdr"]
+[ext_resource type="Texture2D" uid="uid://75hdasi3owsr" path="res://effects/Dead.png" id="2_l1bdu"]
 
 [sub_resource type="Animation" id="Animation_lf77f"]
 length = 0.001
