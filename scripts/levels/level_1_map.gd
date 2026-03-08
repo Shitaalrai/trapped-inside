@@ -15,6 +15,19 @@ var key_node: Area2D
 @onready var enemies_node: Node = $Enemies
 @onready var door: Area2D = $Door
 
+func _ready() -> void:
+	for enemy in enemies_node.get_children():
+		enemy.died.connect(_on_enemy_died)
+
+
+var last_enemy_position: Vector2
+
+func _on_enemy_died(pos: Vector2) -> void:
+	last_enemy_position = pos
+
+	if enemies_node.get_child_count() == 1:
+		call_deferred("_spawn_key")
+
 
 func _process(_delta: float) -> void:
 	if key_spawned:
@@ -29,7 +42,8 @@ func _spawn_key() -> void:
 
 	var key_instance := KEY_SCENE.instantiate() as Area2D
 	key_instance.name = "Key"
-	key_instance.position = door.position + Vector2(-80, 0)
+	# key_instance.position = door.position + Vector2(-80, 0)
+	key_instance.position = last_enemy_position
 	key_instance.key_collected.connect(_on_key_collected)
 
 	key_node = key_instance
