@@ -15,7 +15,7 @@ enum State {
 @export var attack_damage: int = 10
 @export var attack_speed: float = 1.0
 @export var hitpoints:int = 180
-@export var aggro_range: float = 256.0
+@export var aggro_range: float = 450.0
 @export var attack_range: float = 80.0
 @export_category("Related Scenes")
 
@@ -29,6 +29,8 @@ var _is_attacking: bool = false
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 
 @onready var nav_agent : NavigationAgent2D = $NavigationAgent2D
+
+signal died(pos: Vector2)
 
 func _ready() -> void:
 	animation_tree.set_active(true)
@@ -159,6 +161,7 @@ func take_damage(damage_taken: int) -> void:
 
 
 func death() -> void:
+	died.emit(global_position)
 	_change_state(State.DEAD)
 	var death_scene : Node2D = death_packed.instantiate()
 	death_scene.position = global_position + Vector2(0.0,-32.0)
