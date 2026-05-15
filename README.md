@@ -35,8 +35,6 @@ trapped-inside/
 | **Physics Engine**  | Jolt Physics (3D)             |
 | **Config Version**  | 5                              |
 | **Windows Renderer**| Direct3D 12 (d3d12)           |
-**To attack in the direction you want, move the mouse toward the desired direction and press the left mouse button.**
----
 
 ## 🎮 Controls
 
@@ -48,6 +46,8 @@ trapped-inside/
 | Move Left  | `A` |
 
 
+---
+**To attack in the direction you want, move the mouse toward the desired direction and press the left mouse button.**
 ---
 
 ## 🚀 Getting Started
