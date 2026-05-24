@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal update_hp_bar(hp_bar_value : int)
+
 enum State {
 	IDLE,
 	RUN,
@@ -11,15 +13,17 @@ enum State {
 @export var speed: int = 400
 @export var attack_speed: float = 0.6
 @export var attack_damage: int  = 60
-@export var hitpoints: int = 150
+@export var hitpoints: int = 200
 
 var state: State = State.IDLE
 var move_direction: Vector2 = Vector2.ZERO
+var hitpoint_max : int
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_playback: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
 
 func _ready() -> void:
+	hitpoint_max = hitpoints
 	animation_tree.active = true
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -85,6 +89,8 @@ func attack() -> void:
 
 func take_damage(damage_taken: int) -> void:
 	hitpoints -= damage_taken
+	@warning_ignore("integer_division")
+	update_hp_bar.emit(hitpoints * 100 / hitpoint_max)
 	if hitpoints <= 0:
 		death()
 
