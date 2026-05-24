@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d1fcxwla7hc7w"]
 
-[ext_resource type="Script" uid="uid://bqehfnppg6o73" path="res://scenes/enemies/goblin.gd" id="1_abxm6"]
+[ext_resource type="Script" uid="uid://bqehfnppg6o73" path="res://scripts/goblin/goblin.gd" id="1_abxm6"]
 [ext_resource type="PackedScene" uid="uid://b1t3n2a83nss6" path="res://assets/effects/death.tscn" id="2_s4grb"]
 [ext_resource type="Texture2D" uid="uid://dvhh2uiu7y7m4" path="res://assets/sprites/enemies/Torch_Red.png" id="3_gv1lv"]
 [ext_resource type="Texture2D" uid="uid://btdh68t10ifd3" path="res://UI/Banners/Carved_3Slides.png" id="3_s4grb"]
