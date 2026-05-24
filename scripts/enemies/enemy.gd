@@ -28,7 +28,6 @@ var _is_attacking: bool = false
 @onready var spawn_point: Vector2 = global_position
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_playback: AnimationNodeStateMachinePlayback = $AnimationTree ["parameters/playback"]
-@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 @onready var health_bar: TextureProgressBar = $HealthBar
 
 @onready var nav_agent : NavigationAgent2D = $NavigationAgent2D
@@ -40,8 +39,28 @@ func _ready() -> void:
 	hitpoints = max_hitpoints
 	health_bar.max_value = max_hitpoints
 	health_bar.value = hitpoints
-	
+
+
+func _get_player() -> CharacterBody2D:
+	var node := get_tree().get_first_node_in_group("player")
+	if node is CharacterBody2D and is_instance_valid(node):
+		return node
+	return null
+
+
+func _get_effects_node() -> Node2D:
+	var node: Node = self
+	while node:
+		var effects := node.get_node_or_null("Effects") as Node2D
+		if effects:
+			return effects
+		node = node.get_parent()
+	return null
+
+
 func _physics_process(_delta: float) -> void:
+	if not is_instance_valid(self):
+		return
 	if state == State.DEAD:
 		return
 
@@ -91,7 +110,10 @@ func _change_state(new_state: State) -> void:
 
 
 func distance_to_player() -> float:
-	return  global_position.distance_to(player.global_position)
+	var target_player := _get_player()
+	if target_player == null:
+		return INF
+	return global_position.distance_to(target_player.global_position)
 	
 	
 func attack() -> void:
@@ -100,15 +122,25 @@ func attack() -> void:
 
 	_is_attacking = true
 
-	var player_pos:Vector2 = player.global_position
-	var attack_dir: Vector2 = (player_pos -	global_position).normalized()
+	var target_player := _get_player()
+	if target_player == null:
+		_is_attacking = false
+		return
+
+	var player_pos: Vector2 = target_player.global_position
+	var attack_dir: Vector2 = (player_pos - global_position).normalized()
 	$Sprite2D.flip_h = attack_dir.x < 0 and abs(attack_dir.x) >= abs(attack_dir.y)
 	animation_tree.set("parameters/attack/BlendSpace2D/blend_position", attack_dir)
 	
 	await get_tree().create_timer(attack_speed).timeout
+	if not is_instance_valid(self):
+		return
 	_is_attacking = false
 
 	if state == State.DEAD:
+		return
+
+	if _get_player() == null:
 		return
 
 	var next_state: State = _state_after_attack()
@@ -133,7 +165,10 @@ func _state_after_attack() -> State:
 
 func move() -> void:
 	if state == State.CHASE:
-		nav_agent.target_position = player.global_position
+		var target_player := _get_player()
+		if target_player == null:
+			return
+		nav_agent.target_position = target_player.global_position
 	elif state == State.RETURN:
 		nav_agent.target_position = spawn_point
 	var next_path_position: Vector2 = nav_agent.get_next_path_position()
@@ -168,11 +203,21 @@ func take_damage(damage_taken: int) -> void:
 
 
 func death() -> void:
-	died.emit(global_position)
-	_change_state(State.DEAD)
-	var death_scene : Node2D = death_packed.instantiate()
-	death_scene.position = global_position + Vector2(0.0,-32.0)
-	%Effects.add_child(death_scene)
+	if state == State.DEAD:
+		return
+
+	var death_pos := global_position
+	state = State.DEAD
+	died.emit(death_pos)
+
+	var death_scene: Node2D = death_packed.instantiate()
+	var effects := _get_effects_node()
+	if effects:
+		effects.add_child(death_scene)
+		death_scene.global_position = death_pos + Vector2(0.0, -32.0)
+	else:
+		push_warning("Effects node not found; could not spawn enemy death VFX.")
+
 	queue_free()
 
 

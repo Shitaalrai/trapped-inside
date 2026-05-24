@@ -74,4 +74,9 @@ func _on_door_body_entered(body: Node2D) -> void:
 	if not has_key:
 		return
 
+	var game_scene := get_parent()
+	if game_scene and game_scene.has_method("load_level"):
+		game_scene.call_deferred("load_level", "res://scenes/levels/level_3_map.tscn")
+		return
+	
 	get_tree().call_deferred("change_scene_to_file" , "res://scenes/levels/level_3_map.tscn")
