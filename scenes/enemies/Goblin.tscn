@@ -417,7 +417,7 @@ advance_mode = 2
 states/attack/node = SubResource("AnimationNodeBlendTree_uv0tj")
 states/attack/position = Vector2(485.98596, 174.4)
 states/idle/node = SubResource("AnimationNodeAnimation_gv1lv")
-states/idle/position = Vector2(315.74597, 100.64)
+states/idle/position = Vector2(315.74597, 100.0256)
 states/run/node = SubResource("AnimationNodeAnimation_7rhi0")
 states/run/position = Vector2(495.74597, 45.6)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_7rhi0"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_i17b2"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_y0wjt"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_4i7ht"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_w07lc"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_gv1lv")]
@@ -449,7 +449,6 @@ shape = SubResource("CircleShape2D_onrkg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1715350014]
 libraries/ = SubResource("AnimationLibrary_5ann7")
-autoplay = &"idle"
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=407433111]
 tree_root = SubResource("AnimationNodeStateMachine_s4grb")
@@ -508,4 +507,3 @@ tint_progress = Color(0.9283432, 0, 0.17848146, 1)
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
-[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

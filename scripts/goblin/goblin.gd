@@ -82,7 +82,6 @@ func _determine_next_state() -> State:
 
 
 func _change_state(new_state: State) -> void:
-	print("STATE CHANGED TO: ", new_state)
 
 	previous_state = state
 	state = new_state
@@ -91,19 +90,38 @@ func _change_state(new_state: State) -> void:
 	if state == State.ATTACK:
 		attack()
 
-	if state == State.ATTACK:
-		attack()
 
 
 func distance_to_player() -> float:
 	return  global_position.distance_to(player.global_position)
 	
 	
+#func attack() -> void:
+#	if _is_attacking or state == State.DEAD:
+#		return
+#
+#	_is_attacking = true
+#
+#	var player_pos:Vector2 = player.global_position
+#	var attack_dir: Vector2 = (player_pos -	global_position).normalized()
+#	$Sprite2D.flip_h = attack_dir.x < 0 and abs(attack_dir.x) >= abs(attack_dir.y)
+#	animation_tree.set("parameters/attack/BlendSpace2D/blend_position", attack_dir)
+#	
+#	await get_tree().create_timer(attack_speed).timeout
+#	_is_attacking = false
+#
+#	if state == State.DEAD:
+#		return
+#
+##	var next_state: State = _state_after_attack()
+##	if next_state != state:
+#		_change_state(next_state)
 func attack() -> void:
 	if _is_attacking or state == State.DEAD:
 		return
 
 	_is_attacking = true
+	print("Attaking now..")
 
 	var player_pos:Vector2 = player.global_position
 	var attack_dir: Vector2 = (player_pos -	global_position).normalized()
@@ -119,7 +137,6 @@ func attack() -> void:
 	var next_state: State = _state_after_attack()
 	if next_state != state:
 		_change_state(next_state)
-
 
 func _state_after_attack() -> State:
 	# Prefer returning to the previous locomotion state when still valid,
@@ -181,5 +198,4 @@ func death() -> void:
 	queue_free()
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
-	print("HIT DETECTED")
 	area.owner.take_damage(attack_damage)
