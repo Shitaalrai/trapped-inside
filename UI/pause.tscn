@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://is6f5djrhesq"]
+
+[ext_resource type="Texture2D" uid="uid://bhxqpl0acnphb" path="res://UI/Buttons/Button_Blue_3Slides.png" id="1_jddmy"]
+[ext_resource type="Script" uid="uid://72lyelsl3vni" path="res://UI/pause.gd" id="1_syi7u"]
+[ext_resource type="Texture2D" uid="uid://c0rrmi4ni8o7u" path="res://UI/Buttons/Button_Red_3Slides.png" id="2_syi7u"]
+[ext_resource type="Texture2D" uid="uid://dphpwcy5v7y21" path="res://UI/Buttons/Button_Disable_3Slides.png" id="3_ofr6j"]
+[ext_resource type="FontFile" uid="uid://c74rfgotxsab2" path="res://UI/PirataOne-Regular.ttf" id="4_0o46q"]
+[ext_resource type="AudioStream" uid="uid://cq7qlvl1jn6lv" path="res://sound/click.mp3" id="5_g74ew"]
+[ext_resource type="AudioStream" uid="uid://b0rtkp1ruc65x" path="res://sound/hover.mp3" id="6_25la5"]
+
+[node name="pause" type="CanvasLayer" unique_id=1974091350]
+process_mode = 3
+script = ExtResource("1_syi7u")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=514855155]
+offset_left = 650.0
+offset_top = 179.0
+offset_right = 1150.0
+offset_bottom = 721.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="resume" type="TextureButton" parent="VBoxContainer" unique_id=918387585]
+custom_minimum_size = Vector2(500, 150)
+layout_mode = 2
+texture_normal = ExtResource("1_jddmy")
+texture_pressed = ExtResource("2_syi7u")
+texture_hover = ExtResource("3_ofr6j")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/resume" unique_id=955693533]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -82.0
+offset_right = 82.0
+offset_bottom = 120.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0.015686275, 0, 0.6745098)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 16
+theme_override_fonts/font = ExtResource("4_0o46q")
+theme_override_font_sizes/font_size = 60
+text = "RESUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="click" type="AudioStreamPlayer2D" parent="VBoxContainer/resume" unique_id=1493311540]
+stream = ExtResource("5_g74ew")
+volume_db = 5.045
+bus = &"sfx"
+
+[node name="hover" type="AudioStreamPlayer2D" parent="VBoxContainer/resume" unique_id=512962185]
+stream = ExtResource("6_25la5")
+volume_db = 5.045
+bus = &"sfx"
+
+[node name="restart" type="TextureButton" parent="VBoxContainer" unique_id=1047956339]
+custom_minimum_size = Vector2(500, 150)
+layout_mode = 2
+texture_normal = ExtResource("1_jddmy")
+texture_pressed = ExtResource("2_syi7u")
+texture_hover = ExtResource("3_ofr6j")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/restart" unique_id=836181318]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0.015686275, 0, 0.6745098)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 16
+theme_override_fonts/font = ExtResource("4_0o46q")
+theme_override_font_sizes/font_size = 60
+text = "RESTART"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="click" type="AudioStreamPlayer2D" parent="VBoxContainer/restart" unique_id=403658386]
+position = Vector2(0, -154)
+stream = ExtResource("5_g74ew")
+volume_db = 5.045
+bus = &"sfx"
+
+[node name="hover2" type="AudioStreamPlayer2D" parent="VBoxContainer/restart" unique_id=1736085953]
+position = Vector2(0, -154)
+stream = ExtResource("6_25la5")
+volume_db = 5.045
+bus = &"sfx"
+
+[node name="spacer" type="Control" parent="VBoxContainer" unique_id=1498838470]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="quit" type="TextureButton" parent="VBoxContainer" unique_id=892943713]
+custom_minimum_size = Vector2(500, 150)
+layout_mode = 2
+texture_normal = ExtResource("1_jddmy")
+texture_pressed = ExtResource("2_syi7u")
+texture_hover = ExtResource("3_ofr6j")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/quit" unique_id=718931325]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0.015686275, 0, 0.6745098)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 16
+theme_override_fonts/font = ExtResource("4_0o46q")
+theme_override_font_sizes/font_size = 60
+text = "QUIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="click" type="AudioStreamPlayer2D" parent="VBoxContainer/quit" unique_id=2129622878]
+position = Vector2(0, -362)
+stream = ExtResource("5_g74ew")
+volume_db = 5.045
+bus = &"sfx"
+
+[node name="hover3" type="AudioStreamPlayer2D" parent="VBoxContainer/quit" unique_id=966242595]
+position = Vector2(0, -362)
+stream = ExtResource("6_25la5")
+volume_db = 5.045
+bus = &"sfx"
+
+[node name="Label" type="Label" parent="." unique_id=651709716]
+offset_left = 747.0
+offset_right = 1052.0
+offset_bottom = 155.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("4_0o46q")
+theme_override_font_sizes/font_size = 120
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="VBoxContainer/resume" to="." method="_on_resume_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/restart" to="." method="_on_restart_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/restart" to="." method="_on_restart_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

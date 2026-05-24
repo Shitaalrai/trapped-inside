@@ -12,10 +12,11 @@ enum State {
 @export_category("Related Scenes")
 @export var death_packed: PackedScene
 @export var speed: int = 128
-@export var attack_damage: int = 10
+@export var attack_damage: int = 30
 @export var attack_speed: float = 1.0
 @export var hitpoints:int = 180
-@export var aggro_range: float = 450.0
+@export var max_hitpoints: int = 180
+@export var aggro_range: float = 400.0
 @export var attack_range: float = 80.0
 @export_category("Related Scenes")
 
@@ -23,10 +24,12 @@ var state: State = State.IDLE
 var previous_state: State = State.IDLE
 var _is_attacking: bool = false
 
+
 @onready var spawn_point: Vector2 = global_position
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_playback: AnimationNodeStateMachinePlayback = $AnimationTree ["parameters/playback"]
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
+@onready var health_bar: TextureProgressBar = $HealthBar
 
 @onready var nav_agent : NavigationAgent2D = $NavigationAgent2D
 
@@ -34,6 +37,9 @@ signal died(pos: Vector2)
 
 func _ready() -> void:
 	animation_tree.set_active(true)
+	hitpoints = max_hitpoints
+	health_bar.max_value = max_hitpoints
+	health_bar.value = hitpoints
 	
 func _physics_process(_delta: float) -> void:
 	if state == State.DEAD:
@@ -50,7 +56,6 @@ func _physics_process(_delta: float) -> void:
 			move()
 		State.ATTACK:
 			velocity = Vector2.ZERO
-
 	move_and_slide()
 
 	if state in [State.IDLE, State.CHASE, State.RETURN]:
@@ -156,6 +161,8 @@ func update_animation() -> void:
 
 func take_damage(damage_taken: int) -> void:
 	hitpoints -= damage_taken
+	hitpoints = clamp(hitpoints, 0, max_hitpoints)
+	health_bar.value = hitpoints
 	if hitpoints <= 0:
 		death()
 

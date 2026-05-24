@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cxt02epfxh3pm"
+path="res://.godot/imported/epic music bg.mp3-22fdd405d3f204ff6d141dd9b2f9942e.mp3str"
+
+[deps]
+
+source_file="res://sound/epic music bg.mp3"
+dest_files=["res://.godot/imported/epic music bg.mp3-22fdd405d3f204ff6d141dd9b2f9942e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
