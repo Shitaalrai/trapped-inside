@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://5ibjk1ll2b5w"]
 
-[ext_resource type="Script" uid="uid://15yh3h5fu53n" path="res://scenes/levels/level_3_map.gd" id="1_typ7l"]
+[ext_resource type="Script" uid="uid://15yh3h5fu53n" path="res://scripts/levels/level_3_map.gd" id="1_typ7l"]
 [ext_resource type="Texture2D" uid="uid://wtrrj5u6dkv3" path="res://assets/tilesets/mainlevbuild.png" id="2_uali0"]
 [ext_resource type="Texture2D" uid="uid://cq1l4w2cpryi" path="res://assets/tilesets/MainLev2.0.png" id="3_bspxg"]
 [ext_resource type="Texture2D" uid="uid://bith5d1ys7nit" path="res://assets/tilesets/NavMeshPainter.png" id="4_c6mt0"]
