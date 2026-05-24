@@ -12407,4 +12407,8 @@ position = Vector2(92, 58)
 [node name="Effects" type="Node2D" parent="." unique_id=488624059]
 unique_name_in_owner = true
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1973227939]
+
+[node name="pause" parent="CanvasLayer" unique_id=1974091350 instance=ExtResource("8_jsjr7")]
+
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
