@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c5st45o3c3k14" path="res://scripts/HUD/hud.gd" id="3_7qvpy"]
 [ext_resource type="FontFile" uid="uid://c74rfgotxsab2" path="res://UI/PirataOne-Regular.ttf" id="4_myp8j"]
 [ext_resource type="Texture2D" uid="uid://dya5unominf5d" path="res://UI/Banners/Banner_Connection_Down.png" id="5_7qvpy"]
+[ext_resource type="Texture2D" uid="uid://bhnh5m0tyhybv" path="res://assets/tilesets/heart pixel art 64x64.png" id="7_354va"]
 
 [node name="Gamescene" type="Node2D" unique_id=189492191]
 script = ExtResource("1_myp8j")
@@ -79,3 +80,35 @@ text = "HP
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Lives" type="HBoxContainer" parent="UI/HUD" unique_id=-1445864945]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 24.0
+offset_right = 460.0
+offset_bottom = 88.0
+theme_override_constants/separation = 8
+
+[node name="Heart1" type="TextureRect" parent="UI/HUD/Lives" unique_id=-445864944]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("7_354va")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Heart2" type="TextureRect" parent="UI/HUD/Lives" unique_id=-445864943]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("7_354va")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Heart3" type="TextureRect" parent="UI/HUD/Lives" unique_id=-445864942]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("7_354va")
+expand_mode = 1
+stretch_mode = 5
