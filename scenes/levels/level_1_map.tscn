@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bith5d1ys7nit" path="res://assets/tilesets/NavMeshPainter.png" id="5_v4rir"]
 [ext_resource type="Texture2D" uid="uid://ca233i21eih6t" path="res://assets/tilesets/decorative.png" id="6_m5hgk"]
 [ext_resource type="PackedScene" uid="uid://dus388dmuudft" path="res://scenes/enemies/enemy.tscn" id="6_rnqn2"]
+[ext_resource type="PackedScene" uid="uid://d1fcxwla7hc7w" path="res://scenes/enemies/Goblin.tscn" id="8_oimll"]
 [ext_resource type="PackedScene" uid="uid://is6f5djrhesq" path="res://UI/pause.tscn" id="9_oimll"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yplew"]
@@ -13485,6 +13486,9 @@ position = Vector2(1437, 1095)
 
 [node name="Enemy3" parent="Enemies" unique_id=1371725835 instance=ExtResource("6_rnqn2")]
 position = Vector2(972, 1527)
+
+[node name="Goblin" parent="Enemies" unique_id=1358941438 instance=ExtResource("8_oimll")]
+position = Vector2(685, 460)
 
 [node name="Effects" type="Node2D" parent="." unique_id=488624059]
 unique_name_in_owner = true
