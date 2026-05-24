@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://dj02rafn3nulo"]
+
+[ext_resource type="PackedScene" uid="uid://bx7ipxkoelcm2" path="res://scenes/levels/level_1_map.scn" id="1_4rhnq"]
+[ext_resource type="Script" uid="uid://dp265h5ypvl6a" path="res://scenes/levels/gamescene.gd" id="1_myp8j"]
+[ext_resource type="Texture2D" uid="uid://btdh68t10ifd3" path="res://UI/Banners/Carved_3Slides.png" id="2_qfqpe"]
+[ext_resource type="Script" uid="uid://c5st45o3c3k14" path="res://scenes/levels/hud.gd" id="3_7qvpy"]
+[ext_resource type="FontFile" uid="uid://c74rfgotxsab2" path="res://UI/PirataOne-Regular.ttf" id="4_myp8j"]
+[ext_resource type="Texture2D" uid="uid://dya5unominf5d" path="res://UI/Banners/Banner_Connection_Down.png" id="5_7qvpy"]
+
+[node name="Gamescene" type="Node2D" unique_id=189492191]
+script = ExtResource("1_myp8j")
+
+[node name="Level1-map" parent="." unique_id=1777648938 instance=ExtResource("1_4rhnq")]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=451391315]
+
+[node name="HUD" type="Control" parent="UI" unique_id=1896237358]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_7qvpy")
+
+[node name="Hitpoints" type="TextureRect" parent="UI/HUD" unique_id=83052516]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 125.0
+offset_right = 424.0
+offset_bottom = 189.0
+texture = ExtResource("2_qfqpe")
+
+[node name="HitpointsBar" type="TextureProgressBar" parent="UI/HUD/Hitpoints" unique_id=1200981759]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -30.0
+offset_right = 174.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+nine_patch_stretch = true
+texture_progress = ExtResource("2_qfqpe")
+tint_progress = Color(0.39784765, 0.92273045, 0.13517547, 1)
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD" unique_id=696374737]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 54.0
+offset_top = 3.0
+offset_right = 248.0
+offset_bottom = 195.0
+texture = ExtResource("5_7qvpy")
+
+[node name="Label" type="Label" parent="UI/HUD/TextureRect" unique_id=1664180332]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = 27.0
+offset_right = 9.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0.015686275, 0, 0.6745098)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 16
+theme_override_fonts/font = ExtResource("4_myp8j")
+theme_override_font_sizes/font_size = 60
+text = "HP
+"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://5ej1kx0f5rrk" path="res://scripts/enemies/enemy.gd" id="1_4gyqm"]
 [ext_resource type="PackedScene" uid="uid://bj8utadnl34ts" path="res://effects/death.tscn" id="2_iifgy"]
 [ext_resource type="Texture2D" uid="uid://ylse6gpvtwpm" path="res://assets/sprites/enemies/Warrior_Red.png" id="2_qi2p4"]
+[ext_resource type="Texture2D" uid="uid://btdh68t10ifd3" path="res://UI/Banners/Carved_3Slides.png" id="4_fcftc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 29.017237
@@ -389,7 +390,7 @@ neighbor_distance = 128.0
 max_speed = 128.0
 debug_enabled = true
 debug_use_custom = true
-debug_path_custom_color = Color(1, 0.28235295, 0.24313726, 1)
+debug_path_custom_color = Color(0.8745098, 0, 0.09019608, 1)
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1464262953]
 collision_layer = 16
@@ -410,6 +411,21 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1512883953]
 position = Vector2(0, -21.512497)
 shape = SubResource("RectangleShape2D_rrgw0")
+
+[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=2049113385]
+offset_left = -41.0
+offset_top = -94.99999
+offset_right = 64.62281
+offset_bottom = -54.37496
+scale = Vector2(0.7668799, 0.31999975)
+size_flags_horizontal = 4
+size_flags_vertical = 0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_fcftc")
+texture_progress = ExtResource("4_fcftc")
+tint_under = Color(0.95649725, 0.57527167, 1.1551381e-06, 1)
+tint_progress = Color(0.9283432, 0, 0.17848146, 1)
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
