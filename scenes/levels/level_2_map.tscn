@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ca233i21eih6t" path="res://assets/tilesets/decorative.png" id="4_myg1y"]
 [ext_resource type="PackedScene" uid="uid://bq8sqr4xsvr2l" path="res://scenes/player/player.tscn" id="5_yxxk1"]
 [ext_resource type="PackedScene" uid="uid://dus388dmuudft" path="res://scenes/enemies/enemy.tscn" id="6_qshrh"]
+[ext_resource type="PackedScene" uid="uid://is6f5djrhesq" path="res://UI/pause.tscn" id="8_jsjr7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yplew"]
 texture = ExtResource("1_bv8q3")
@@ -12424,5 +12425,9 @@ position = Vector2(1986, 923)
 
 [node name="Effects" type="Node2D" parent="." unique_id=488624059]
 unique_name_in_owner = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1973227939]
+
+[node name="pause" parent="CanvasLayer" unique_id=1974091350 instance=ExtResource("8_jsjr7")]
 
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
