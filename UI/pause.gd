@@ -1,14 +1,12 @@
 extends CanvasLayer
 
 signal quit_to_menu
+signal restart_requested
 
 func _ready():
+	add_to_group("pause_menu")
 	visible = false
 	process_mode = Node.PROCESS_MODE_ALWAYS  
-
-func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		toggle_pause()
 
 func toggle_pause():
 	var is_paused = get_tree().paused
@@ -26,7 +24,10 @@ func resume():
 
 func _on_restart_pressed() -> void:
 	$VBoxContainer/restart/click.play()
-	get_tree().paused = false  
+	get_tree().paused = false
+	visible = false
+	restart_requested.emit()
+	get_viewport().set_input_as_handled()
 
 func _on_quit_pressed() -> void:
 	$VBoxContainer/quit/click.play()

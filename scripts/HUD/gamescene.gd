@@ -3,6 +3,7 @@ extends Node2D
 const GAME_OVER_SCENE: PackedScene = preload("res://UI/game_over.tscn")
 
 @onready var HUD: Control = $UI/HUD
+@onready var _pause_menu: CanvasLayer = $UI/pause
 @onready var _player_data: PlayerDataService = get_node("/root/PlayerData")
 var current_level: Node2D
 var _is_loading: bool = false
@@ -10,9 +11,20 @@ var _game_over_ui: CanvasLayer
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	_player_data.game_over.connect(_on_game_over)
 	current_level = _find_level_node()
 	_connect_player_to_hud()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if _game_over_ui and is_instance_valid(_game_over_ui):
+		return
+	if not (event.is_action_pressed("escape") or event.is_action_pressed("ui_cancel")):
+		return
+	if _pause_menu.has_method("toggle_pause"):
+		_pause_menu.toggle_pause()
+		get_viewport().set_input_as_handled()
 
 
 func load_level(level_scene_path: String) -> void:

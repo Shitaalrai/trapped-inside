@@ -14,13 +14,10 @@ var key_node: Area2D
 
 @onready var enemies_node: Node = $Enemies
 @onready var door: Area2D = $Door
-@onready var pause_menu = preload("res://UI/pause.tscn").instantiate()
 
 func _ready() -> void:
 	for enemy in enemies_node.get_children():
 		enemy.died.connect(_on_enemy_died)
-	add_child(pause_menu)
-	pause_menu.hide()
 
 var last_enemy_position: Vector2
 
@@ -38,14 +35,6 @@ func _process(_delta: float) -> void:
 
 	if enemies_node.get_child_count() == 0:
 		_spawn_key()
-
-func _input(event):
-	if event.is_action_pressed("ui_cancel"): # ESC
-		toggle_pause()
-
-func toggle_pause():
-	get_tree().paused = !get_tree().paused
-	pause_menu.visible = get_tree().paused
 
 func _spawn_key() -> void:
 	key_spawned = true
