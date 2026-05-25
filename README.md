@@ -6,7 +6,7 @@
 
 ## 📖 About
 
-**Trapped Inside** is a Godot 4.6 game project developed by [Bishuthapa](https://github.com/Bishuthapa). The project uses Godot's GL Compatibility renderer, making it suitable for a wide range of hardware including mobile and lower-end desktops.
+**Trapped Inside** is a Godot 4.6 game project developed by [Bishuthapa] and [Shital Rai](https://github.com/Bishuthapa). The project uses Godot's GL Compatibility renderer, making it suitable for a wide range of hardware including mobile and lower-end desktops.
 
 ---
 
