@@ -23,20 +23,38 @@ func load_main_menu(_origin: String) -> void:
 	main_menu.settings_pressed.connect(settings)
 	main_menu.exit_pressed.connect(exit_game)
 
-func new_game(origin: String) -> void:
+func new_game(_origin: String) -> void:
+	call_deferred("_begin_game")
+
+
+func restart_game() -> void:
+	call_deferred("_begin_game")
+
+
+func _begin_game() -> void:
+	get_tree().paused = false
+	current_game = null
 	clear_scene()
+	await get_tree().process_frame
 
 	_player_data.reset_for_new_game()
 	current_game = game_scene_packed.instantiate()
 	add_child(current_game)
+	_wire_pause_menu(current_game.find_child("pause", true, false))
 
-	# 🔥 connect pause menu HERE
-	var pause_menu = current_game.find_child("pause", true, false)
 
-	if pause_menu:
-		pause_menu.quit_to_menu.connect(go_to_main_menu)
-	else:
-		print("Pause menu not found!")
+func _wire_pause_menu(pause_menu: Node) -> void:
+	if pause_menu == null:
+		push_warning("Pause menu not found!")
+		return
+
+	var quit_cb := Callable(self, "go_to_main_menu")
+	if pause_menu.has_signal("quit_to_menu") and not pause_menu.quit_to_menu.is_connected(quit_cb):
+		pause_menu.quit_to_menu.connect(quit_cb)
+
+	var restart_cb := Callable(self, "restart_game")
+	if pause_menu.has_signal("restart_requested") and not pause_menu.restart_requested.is_connected(restart_cb):
+		pause_menu.restart_requested.connect(restart_cb)
 
 
 func go_to_main_menu():
@@ -44,9 +62,10 @@ func go_to_main_menu():
 	load_main_menu("pause")
 
 
-func clear_scene():
+func clear_scene() -> void:
 	for child in get_children():
 		if child != self:
+			remove_child(child)
 			child.queue_free()
 
 
